@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURUdwTP+qqkNZrikAAAABdFJOUwBA5thmAAAAWUlEQVQI123KsQ2EMAAEwbEQcugSKAU6g9JciksgJEDcBy/0ySerW90C5Vyo9961J8OSnF+syfUXv6QlQ026KTmUBHmw31gvLCfaQO2YDhSYt1fbeNe8vS8+AFM3JjPOm/sAAAAASUVORK5CYII=" type="image/png" />
+    <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURUdwTP+qqkNZrikAAAABdFJOUwBA5thmAAAAWUlEQVQI123KsQ2EMAAEwbEQcugSKAU6g9JciksgJEDcBy/0ySerW90C5Vyo9961J8OSnF+syfUXv6QlQ026KTmUBHmw31gvLCfaQO2YDhSYt1fbeNe8vS8+AFM3JjPOm/sAAAAASUVORK5CYII=" type="image/png">
     <title>Gays.cz</title>
     <style>
         body {
@@ -64,6 +64,10 @@
         nav span {
             font-size: 14px;
         }
+
+		nav span, nav svg {
+			pointer-events: none;
+		}
         
         nav .active svg {
             stroke-width: 3px;
@@ -165,7 +169,7 @@
             object-fit: cover;
             height: 100%;
             border-radius: inherit;
-            loading: lazy;
+            /*loading: lazy;*/
         }
         
         #people {
