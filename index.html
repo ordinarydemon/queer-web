@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Měl by ses o to postarat, ať je to unikátní a splňuje SEO">
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURUdwTP+qqkNZrikAAAABdFJOUwBA5thmAAAAWUlEQVQI123KsQ2EMAAEwbEQcugSKAU6g9JciksgJEDcBy/0ySerW90C5Vyo9961J8OSnF+syfUXv6QlQ026KTmUBHmw31gvLCfaQO2YDhSYt1fbeNe8vS8+AFM3JjPOm/sAAAAASUVORK5CYII=" type="image/png">
     <title>Gays.cz</title>
     <style>
@@ -41,7 +42,7 @@
             display: flex;
             flex-flow: row;
             position: sticky;
-            /*width: 100vw;*/
+            width: 100vw;
             height: 64px;
             background: #212121;
             justify-content: space-evenly;
@@ -64,10 +65,6 @@
         nav span {
             font-size: 14px;
         }
-
-		nav span, nav svg {
-			pointer-events: none;
-		}
         
         nav .active svg {
             stroke-width: 3px;
@@ -87,13 +84,31 @@
             stroke: #dedede;
         }
         
+        button {
+            border: none;
+            border-radius: 48px;
+            display: flex;
+            justify-content: space-around;
+            background: #333;
+            align-items: center;
+            padding: 8px 16px;
+            min-width: 40px;
+            min-height: 40px;
+            gap: 4px;
+            cursor: pointer;
+        }
+        
+        button svg {
+            max-width: 32px;
+        }
+        
         footer {
             display: flex;
             justify-content: space-around;
             padding: 3em 1em;
         }
         
-        button, input {
+        input {
             background: none;
         }
         
@@ -109,6 +124,7 @@
             max-width: 680px;
             align-items: center;
             gap: 1.5em;
+            padding: 2em;
         }
         
         .pref-c input {
@@ -125,7 +141,8 @@
         }
         
         .pref-c #place {
-            flex-flow: column;
+            flex-flow: row;
+            flex-wrap: wrap;
         }
         
         .pref {
@@ -169,8 +186,34 @@
             object-fit: cover;
             height: 100%;
             border-radius: inherit;
-            /*loading: lazy;*/
+            loading: lazy;
         }
+        
+        .choose-grid {
+            display: flex;
+            flex-flow: row;
+            margin: auto;
+            justify-content: space-evenly;
+            border-bottom: 2px solid #333;
+            max-width: 640px;
+        }
+        
+        .choose-grid button {
+            background: none;
+            width: 20%;
+            border-radius: 0;
+        }
+        
+        .choose-grid .line {
+            background: #333;
+            width: 2px;
+            height: auto;
+        }
+        
+        /*.choose-grid button:nth-child(2) {
+            border-left: 2px solid white;
+            border-right: 2px solid white;
+        }*/
         
         #people {
             padding-top: 2em;
@@ -257,12 +300,17 @@
             .thumb_c .text, .thumb_c .thumb {
                 width: 33%;
             }
+            
+            .pref-c #place {
+                /*flex-flow: row;*/
+                /*flex-wrap: wrap;*/
+            }
         }
     </style>
 </head>
 <body>
 <nav>
-    <a href="/" onclick="urlRoute(event)">
+    <a aria-label="Domů" href="/" onclick="urlRoute(event)">
         <svg viewBox="0 0 64 64" id="logo">
             <!--<path d="m32,42l16-16a 1,1 0 0 0 -16,-16a 1,1 0 0 0 -16,16zv16m-8,-8h16m-2.34,5.66l-11.31,-11.31m0,11.31l11.31,-11.31"/>-->
             <path d="m24,16l8,8l8,-8" stroke-linecap="round" stroke-width="21px"/>
@@ -348,21 +396,25 @@ const p = {
     
     home: {
         t: "Gays.cz | Domov",
+	d: "Popis domova",
         c: '<article><h1>Welcome here!</h1></article>'
     },
     
     zpravy: {
         t: "Gays.cz | Zprávy",
+	d: "Popis zpráv",
         c: '<article id=news-list><a class=thumb_c href=#><div class=thumb><img alt="Trans lidi"loading=lazy src=trans.webp style=object-fit:cover width=100%></div><div class=text><h3>Trans lidé protestují za svá práva v headlinu</h3><span>12. 8. 1999 Tag, tag, tag</span></div></a><a class=thumb_c href=#><div class=thumb><img alt="Trans lidi"loading=lazy src=trans.webp style=object-fit:cover width=100%></div><div class=text><h3>Trans lidé protestují</h3><span>12. 8. 1999 Tag, tag, tag</span></div></a><a class=thumb_c href=#><div class=thumb><img alt="Trans lidi"loading=lazy src=trans.webp style=object-fit:cover width=100%></div><div class=text><h3>Trans lidé protestují za svá práva v headlinu</h3><span>12. 8. 1999 Tag, tag, tag</span></div></a><a class=thumb_c href=#><div class=thumb><img alt="Trans lidi"loading=lazy src=trans.webp style=object-fit:cover width=100%></div><div class=text><h3>Trans lidé protestují za svá práva v headlinu</h3><span>12. 8. 1999 Tag, tag, tag</span></div></a></article>'
     },
     
     seznamka: {
         t: "Gays.cz | Seznamka",
-        c: '<article id=people><div class=pref-c><div class=pref id=age><input max=99 min=15 step=1 type=number placeholder=15> <span>až</span> <input max=99 min=15 step=1 type=number placeholder=99> <span>let</span></div><div class=pref id=place><label>Místo</label> <input> <button onclick=getLoc()><svg viewBox="0 0 64 64"width=48><circle cx=32 cy=32 r=8 /><circle cx=32 cy=32 r=16 /><path d=m8,32h8m16,16v8m16,-24h8m-24,-16v-8 /></svg> <span>Má poloha</span></button></div><div class=pref><label>Vzdálenost</label><input max=100 min=1 step=1 type=range></div></div></article>'
+	d: "Seznamkový popis",
+        c: '<article id=people><div class=pref-c><div class=pref id=age><input max=99 min=15 step=1 type=number placeholder=15> <span>až</span> <input max=99 min=15 step=1 type=number placeholder=99> <span>let</span></div><div class=pref id=place><label>Místo</label> <button onclick=getLoc()><svg viewBox="0 0 64 64"width=48><circle cx=32 cy=32 r=8 /><circle cx=32 cy=32 r=16 /><path d=m8,32h8m16,16v8m16,-24h8m-24,-16v-8 /></svg> <span>Má poloha</span></button> <button class=show>Vybrat ručně</button><div class=popup style=display:none><button>Středočeský</button> <button>Praha</button> <button>Jihomoravský</button> <button>Moravskoslezký</button> <button>Ústecký</button> <button>Olomoucký</button> <button>Plzeňský</button> <button>Zlínský</button> <button>Královéhradecký</button> <button>Pardubický</button> <button>Vysočina</button> <button>Liberecký</button> <button>Karlovarský</button></div></div><div class=pref><label>Vzdálenost</label><input max=100 min=1 step=1 type=range></div></div><div class=choose-grid><button aria-label="Mřížkový mód"><svg viewBox="0 0 64 64"width=32><path d=m18,17v28h28v-28z /></svg></button><div class=line aria-label="Swipe mód"></div><button><svg viewBox="0 0 64 64"width=32 aria-label="Scroll mód"><path d=m18,9v46h28v-46z /></svg></button><div class=line></div><button><svg viewBox="0 0 64 64"width=32><path d=m9,17v28h46v-28z /></svg></button></div></article>'
     },
     
     ucet: {
         t: "Gays.cz | Účet",
+	d: "Měl by tu být?",
         c: '<article id=news><h1>S pořadovým číslem v prosté vzestupné</h1><p>Paragraf (značka §, U+00A7, na čes. klávesnici (levý) Alt + 0167, patrně vznikla ve středověku jako ligatura, dvojité S ve významu signum sectionis k označování pořadí odstavců) je v současnosti zpravidla část právního předpisu nadepsaná znakem § s pořadovým číslem v prosté vzestupné řadě, např. „§ 24“. Mluví se pak o tomto pořadí buď prostým číslem („paragraf dvacet čtyři“) nebo pořadovým číslem („paragraf dvacátý čtvrtý“). V členění textů jiné než právní povahy se paragrafy objevují jen zřídka, např. v učebnicích nebo soustavných pojednáních. jak tate for free and on voluntary contributions offery na redesing for free<p>Slovem paragraf se nazývá i samotný znak §, který je jedním ze symbolů, synonymem práva, legislativy a předpisů – zejména v množném čísle (např. „vyznat se v paragrafech“). V angličtině má slovo paragraph význam „odstavec“, znaku se říká section sign a obdobně např. španělsky signo de sección.<h2>Použití</h2><p>Ve středoevropské legislativě se znak § používá pro označování větších oddílů textu právního předpisu, v některých jiných oblastech se používá pro číslování jednotlivých menších odstavců.<p>Právní předpisy České republiky se pravidelně strukturují podle úrovní: část – hlava – díl – oddíl – pododdíl – paragraf – odstavec – písmeno (pododstavec) – bod. Paragrafy se tedy zpravidla člení na další části. Číslování paragrafů je v textu předpisu vždy vzestupné, počínaje číslicí 1. V české legislativě jsou paragrafy základní, stabilizovanou úrovní členění právních předpisů, tj. označená část textu si své označení ponechává i při případných novelizacích v budoucnu, takže pokud je do dosud souvislého textu vložen nový paragraf, je označen číslem paragrafu předcházejícího s doplněním písmene, a v případě zrušení paragrafu se čísla následujících paragrafů nemění a číslo zrušeného paragrafu zůstává neobsazeno. Při případných větších nebo postupných novelizacích jsou využívána písmena podle abecedy.[1] Např. po § 19 občanského zákoníku z roku 1964 následovaly v jeho posledním znění § 19a, § 19b, § 19c a až poté § 20.</article>'
     },
 }
