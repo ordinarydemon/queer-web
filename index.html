@@ -375,20 +375,20 @@
 </head>
 <body>
 <nav>
-    <a aria-label="Domů" href="/" onclick="urlRoute(event)">
+    <a id="domu" aria-label="Domů" href="/" onclick="route(e)">
         <svg viewBox="0 0 64 64" id="logo">
             <!--<path d="m32,42l16-16a 1,1 0 0 0 -16,-16a 1,1 0 0 0 -16,16zv16m-8,-8h16m-2.34,5.66l-11.31,-11.31m0,11.31l11.31,-11.31"/>-->
             <path d="m24,16l8,8l8,-8" stroke-linecap="round" stroke-width="21px"/>
             <path d="m32,38v20m-8,-8h16m-2.34,5.66l-11.31,-11.31m0,11.31l11.31,-11.31"/>
         </svg>
     </a>
-    <a href="/zpravy" onclick="urlRoute(event)" class="active">
+    <a id="zpravy" href="/zpravy" onclick="route(e)">
         <svg viewBox="0 0 64 64">
             <path d="m48,44h-32q-4,0 -4,-4v-24h32v24a4,4 0 0 0 8,0v-16h-8m-28,-4h12v8h-12zm16,4h8m0,12h-24"/>
         </svg>
         <span>Zprávy</span>
     </a>
-    <a href="/seznamka" onclick="urlRoute(event)">
+    <a id="seznamka" href="/seznamka" onclick="route(e)">
         <svg viewBox="0 0 64 64">
             <circle r="8" cx="20" cy="18"/>
             <path d="m20,22m-16,16a8,4 0 0 1 32,0"/>
@@ -397,7 +397,7 @@
         </svg>
         <span>Seznamka</span>
     </a>
-    <a href="/ucet" onclick="urlRoute(event)">
+    <a id="ucet" href="/ucet" onclick="route(e)">
         <svg viewBox="0 0 64 64">
             <circle r="24" cx="32" cy="32"></circle>
             <circle r="8" cx="32" cy="24"></circle>
@@ -499,25 +499,35 @@ const urlLocationHandler = async () => {
 		location = "/";
 	}
 	
+	[].forEach.call(document.querySelectorAll('nav a'), function (el) {
+        	el.classList.remove('active');
+    	});
+    
+    	let highlight = "";
+	
 	switch(location) {
 	   case "/":
 	       document.title = p.home.t;
 	       c.innerHTML = p.home.c;
+	       highlight = "domu";
 	       break;
 	        
 	   case "/zpravy": 
 	       document.title = p.zpravy.t;
 	       c.innerHTML = p.zpravy.c;
+	       highlight = "zpravy";
 	       break;
 	        
 	   case "/seznamka": 
 	       document.title = p.seznamka.t;
 	       c.innerHTML = p.seznamka.c;
+	       highlight = "seznamka";
 	       break;
 	        
 	   case "/ucet": 
 	       document.title = p.ucet.t;
 	       c.innerHTML = p.ucet.c;
+	       highlight = "ucet";
 	       break;
 	        
 	   default: 
@@ -526,6 +536,8 @@ const urlLocationHandler = async () => {
 	       break;
 	   
 	}
+	
+	document.getElementById(highlight).classList.add("active");
 };
 
 
