@@ -47,6 +47,7 @@
             background: #212121;
             justify-content: space-evenly;
             top: 0;
+	    z-index: 100;
         }
         
         nav svg {
@@ -198,8 +199,9 @@
             flex-flow: row;
             margin: auto;
             justify-content: space-evenly;
-            border-bottom: 2px solid #333;
+            /*border-bottom: 2px solid #333;*/
             max-width: 640px;
+	    padding: 2em;
         }
         
         .choose-grid button {
@@ -212,6 +214,56 @@
             background: #333;
             width: 2px;
             height: auto;
+        }
+
+	.profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px;
+            margin: auto;
+        }
+        
+        .profile-thumb {
+            aspect-ratio: 1;
+            width: 100%;
+            max-width: 512px;
+            display: flex;
+            align-items: flex-end;
+            background-color: #333;
+            /*background: linear-gradient(0deg, #212121, transparent 40%), url("profile.webp"), #333;*/
+            /*background-size: cover;*/
+            position: relative;
+        }
+        
+        .profile-thumb::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, #212121, transparent 40%);
+        }
+        
+        .profile-thumb img {
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .profile-thumb-text {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4%;
+            z-index: 25;
+            position: absolute;
+        }
+        
+        .profile-thumb-text .online {
+            width: 8px;
+            height: 8px;
+            background: #0f0;
+            border-radius: 50%;
         }
         
         /*.choose-grid button:nth-child(2) {
@@ -308,6 +360,15 @@
             .pref-c #place {
                 /*flex-flow: row;*/
                 /*flex-wrap: wrap;*/
+            }
+
+	    .profile-grid {
+                max-width: min(66%, 1128px);
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+            
+            .profile-thumb-text span {
+                font-size: 24px;
             }
         }
     </style>
@@ -413,7 +474,7 @@ const p = {
     seznamka: {
         t: "Gays.cz | Seznamka",
 	d: "Seznamkový popis",
-        c: '<article id=people><div class=pref-c><div class=pref id=age><input max=99 min=15 step=1 type=number placeholder=15> <span>až</span> <input max=99 min=15 step=1 type=number placeholder=99> <span>let</span></div><div class=pref id=place><label>Místo</label> <button onclick=getLoc()><svg viewBox="0 0 64 64"width=48><circle cx=32 cy=32 r=8 /><circle cx=32 cy=32 r=16 /><path d=m8,32h8m16,16v8m16,-24h8m-24,-16v-8 /></svg> <span>Má poloha</span></button> <button class=show>Vybrat ručně</button><div class=popup style=display:none><button>Středočeský</button> <button>Praha</button> <button>Jihomoravský</button> <button>Moravskoslezký</button> <button>Ústecký</button> <button>Olomoucký</button> <button>Plzeňský</button> <button>Zlínský</button> <button>Královéhradecký</button> <button>Pardubický</button> <button>Vysočina</button> <button>Liberecký</button> <button>Karlovarský</button></div></div><div class=pref><label for=vzdal>Vzdálenost</label><input max=100 min=1 step=1 type=range id=vzdal name=vzdal></div></div><div class=choose-grid><button aria-label="Mřížkový mód"><svg viewBox="0 0 64 64"width=32><path d=m18,17v28h28v-28z /></svg></button><div class=line></div><button aria-label="Swipe mód"><svg viewBox="0 0 64 64"width=32><path d=m18,9v46h28v-46z /></svg></button><div class=line></div><button aria-label="Scroll mód"><svg viewBox="0 0 64 64"width=32><path d=m9,17v28h46v-28z /></svg></button></div></article>'
+        c: '<article id=people><div class=pref-c><div class=pref id=age><input max=99 min=15 step=1 type=number placeholder=15> <span>až</span> <input max=99 min=15 step=1 type=number placeholder=99> <span>let</span></div><div class=pref id=place><label>Místo</label> <button onclick=getLoc()><svg viewBox="0 0 64 64"width=48><circle cx=32 cy=32 r=8 /><circle cx=32 cy=32 r=16 /><path d=m8,32h8m16,16v8m16,-24h8m-24,-16v-8 /></svg> <span>Má poloha</span></button> <button class=show>Vybrat ručně</button><div class=popup style=display:none><button>Středočeský</button> <button>Praha</button> <button>Jihomoravský</button> <button>Moravskoslezký</button> <button>Ústecký</button> <button>Olomoucký</button> <button>Plzeňský</button> <button>Zlínský</button> <button>Královéhradecký</button> <button>Pardubický</button> <button>Vysočina</button> <button>Liberecký</button> <button>Karlovarský</button></div></div><div class=pref><label for=vzdal>Vzdálenost</label><input max=100 min=1 step=1 type=range id=vzdal name=vzdal></div></div><div class=choose-grid><button aria-label="Mřížkový mód"><svg viewBox="0 0 64 64"width=32><path d=m40,8v48m-16,0v-48m-16,16h48m0,16h-48 /><rect height=48 width=48 x=8 y=8 /></svg></button><div class=line></div><button aria-label="Swipe mód"><svg viewBox="0 0 64 64"width=32><path d=m8,24h48m0,16h-48 /><rect height=48 width=48 x=8 y=8 /></svg></button><div class=line></div><button aria-label="Scroll mód"><svg viewBox="0 0 64 64"width=32><path d=m18,9v46h28v-46z /></svg></button></div><div class=profile-grid><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a><a class=profile-thumb href=#><img alt="profilová fotka"src=profile.webp><div class=profile-thumb-text><span>John Doe</span><div class=online></div></div></a></div></article>'
     },
     
     ucet: {
