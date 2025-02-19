@@ -329,7 +329,7 @@
 
 		/* Home */
 
-		.home {
+		#home {
 			padding: 2em 0;
 		}
 	
@@ -338,6 +338,7 @@
 			flex-flow: column;
 			margin: auto;
 			gap: 2em;
+			align-items: center;
 		}
 
 		.hero p {
@@ -345,9 +346,10 @@
 		}
 
 		.hero img {
-			max-width: 80vw;
+			max-width: 40vw;
 			object-fit: cover;
 			border-radius: 4em;
+			display: none;
 		}
 
 		.hero .text {
@@ -376,6 +378,14 @@
 			padding: .5em 1em;
 			background: linear-gradient(129deg, #faa, #704141);
 			color: #212121;
+		}
+
+		.hero h1 {
+			font-size: 52px;
+		}
+
+		.hero p {
+			font-size: 25px;
 		}
 
 		.hero h1, .hero p {
@@ -428,6 +438,18 @@
 
 			.hero {
 				flex-flow: row;
+			}
+
+			.hero h1 {
+				font-size: 56px;
+			}
+
+			.hero p {
+				font-size: 27px;
+			}
+
+			.hero img {
+				display: block;
 			}
         }
     </style>
@@ -521,7 +543,7 @@ const p = {
     home: {
         t: "Gays.cz | Domov",
 	d: "Popis domova",
-        c: '<article id=home><div class=hero><div class=text><h1><span class=love>"LÁSKA" <svg preserveAspectRatio=none viewBox="0 0 64 16"><path d="m0,8q16,8 32,0t32,0"stroke=#faa /></svg> </span>" NENÍ"<br>"NA PRODEJ"</h1><p>Hledání partnerů by nemělo být jen pro VIP. Žádné reklamy, paywally, ani manipulativní algoritmy.</p><button>Zaregistrovat se</button></div><div class=visual><img alt="Mužský pár v objetí"src=gay-hug.webp></div></div></article>'
+        c: '<article id=home><div class=hero><div class=text><h1><span class=love>LÁSKA<svg preserveAspectRatio=none viewBox="0 0 64 16"><path d="m0,8q16,8 32,0t32,0"stroke=#faa /></svg> </span> NENÍ<br>NA PRODEJ</h1><p>Hledání partnerů by nemělo být jen pro VIP. Žádné reklamy, paywally, ani manipulativní algoritmy.</p><button>Zaregistrovat se</button></div><div class=visual><img alt="Mužský pár v objetí"src=gay-hug.webp></div></div></article>'
     },
     
     zpravy: {
